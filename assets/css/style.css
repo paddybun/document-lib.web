@@ -1,0 +1,49 @@
+* {
+	color: rgb(50,50,50);
+}
+
+.bg-blue {
+	background: blue;
+}
+
+.nav a, .nav a:active {
+	padding: 10px, 0, 0, 10px;
+	font-size: 1.5em;
+	text-decoration: none;
+}
+.nav a:hover {
+	background: rgb(180,180,180);
+}
+
+.nav .home{
+	background: #1f8dd6;
+}
+.nav .documents{
+	background: rgb(128, 88, 165);
+}
+.nav .uploaded{
+	background: #5eb95e;
+}
+.nav .rest{
+	background: white;
+}
+
+.header{
+	font-weight: bold;
+}
+
+.colored-table:nth-child(even){
+	background: white;
+}
+
+.colored-table:nth-child(odd){
+	background: rgb(180,180,180);
+}
+
+.colored-table:nth-child(even):hover, .colored-table:nth-child(odd):hover{
+	background: rgb(80,80,80);
+}
+
+.colored-table:nth-child(even):hover div:not(.options), .colored-table:nth-child(odd):hover div:not(.options) {
+	color: white;
+}

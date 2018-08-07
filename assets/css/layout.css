@@ -1,0 +1,15 @@
+.navigation {
+	padding: 5px;
+}
+
+.nav a{
+	height: 50px;	
+}
+
+.form div{
+	margin-bottom: 5px;
+}
+
+table.fixed {
+	table-layout: fixed;
+}

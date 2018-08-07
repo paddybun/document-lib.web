@@ -1,0 +1,56 @@
+{
+  "name": "lib.api.ui",
+  "version": "1.0.0",
+  "description": "The lib.api Ui Project",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-plugin-react-html-attrs": "^2.0.0",
+    "babel-plugin-transform-class-properties": "^6.3.13",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
+    "copy-webpack-plugin": "^4.0.1",
+    "eslint-plugin-react": "^7.4.0",
+    "history": "^4.7.2",
+    "react": "^15.6.1",
+    "react-autocomplete": "^1.7.1",
+    "react-bootstrap-typeahead": "^2.0.0-alpha.3",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-promise-middleware": "^4.4.1",
+    "redux-thunk": "^2.2.0",
+    "webpack": "^2.7.0",
+    "webpack-dev-server": "^2.8.2",
+    "webpack-init": "^0.1.2",
+    "whatwg-fetch": "^2.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --content-base assets --inline --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://pbunda@bitbucket.org/pbunda/lib.api.ui.git"
+  },
+  "author": "Patrick Bunda",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/pbunda/lib.api.ui#readme",
+  "devDependencies": {
+    "eslint": "^4.10.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
+}
