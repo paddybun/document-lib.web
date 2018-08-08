@@ -14,8 +14,8 @@ export default class Categories extends React.Component {
     this.props.dispatch(categoryActions.getCategoriesFromServer())
   }
 
-  deleteCategory (e) {
-    this.props.dispatch(categoryActions.deleteCategory(e.target.dataset.category))
+  deleteCategory (id) {
+    this.props.dispatch(categoryActions.deleteCategory(id))
   }
 
   render () {
@@ -24,7 +24,7 @@ export default class Categories extends React.Component {
         <td scope="row">{item.id}</td>
         <td>{item.short}</td>
         <td>{item.name}</td>
-        <td><button class="btn btn-danger" data-category={item.short} onClick={this.deleteCategory.bind(this)}><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+        <td><button class="btn btn-danger" data-category={item.id} onClick={() => this.deleteCategory(item.id)}><i class="fa fa-trash" aria-hidden="true"></i></button></td>
       </tr>
     })
 

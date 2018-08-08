@@ -25,7 +25,7 @@ export default function reducer (state = initialState, action) {
       console.log("An error occurred: ", action.payload.response.data)
       break
     case Constants.DELETE_CATEGORY_FULFILLED:
-      state.categories = state.categories.filter((item) => { return item.short !== action.payload })
+      state.categories = state.categories.filter((item) => { return item.id !== action.payload })
       break
     case Constants.DELETE_CATEGORY_REJECTED:
       console.log("An error occurred: ", action.payload)

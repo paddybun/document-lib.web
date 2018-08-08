@@ -1,5 +1,5 @@
-import Constants from "../constants/folderConstants"
-import * as FolderService from "../services/folderService"
+import Constants from '../constants/folderConstants'
+import * as FolderService from '../services/folderService'
 
 export function createFolder (name, category, count) {
   return function (dispatch) {

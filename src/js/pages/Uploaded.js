@@ -1,6 +1,5 @@
 import React from "react"
 import { connect } from "react-redux"
-
 import * as documentActions from "../actions/documentActions"
 
 @connect((store) => {
@@ -14,7 +13,7 @@ export default class Uploaded extends React.Component {
   }
 
   submitFile (e) {
-    let formData = new FormData()
+    const formData = new FormData()
     const files = this.filesInput.files
 
     for (var key in files) {

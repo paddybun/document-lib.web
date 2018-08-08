@@ -1,25 +1,31 @@
-import axios from "axios"
+import axios from 'axios'
+import firebase from './firebaseService'
+import firebaseConstants from '../constants/firebaseConstants'
 
-export function createCategory (categoryShort, categoryName) {
-  return axios.request({
-    url: "http://localhost:8081/api/category",
-    method: "post",
-    data: {
-      categoryShort,
-      categoryName
-    },
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Accept": "application/json",
-      "Content-Type": "application/json"
-    }
-  })
+export function createCategory (short, name) {
+  const ref = firebase.ref(`${firebaseConstants.DATABASE_CATEGORIES}`)
+  const newChildRef = ref.push()
+  return newChildRef.set({short, name})
 }
 
-export function deleteCategory (categoryShort) {
-  return fetch(`http://localhost:8081/api/category?category=${categoryShort}`, { method: "DELETE" })
+export function deleteCategory (id) {
+  
+  const promise = new Promise((resolve, reject) => {
+    const ref = firebase.ref(`${firebaseConstants.DATABASE_CATEGORIES}/${id}`)
+
+    try {
+      ref.remove()
+      resolve(id)
+    } catch (error) {
+      reject(error)
+    }
+    
+  })
+
+  return promise
 }
 
 export function fetchCategories () {
-  return fetch("http://localhost:8081/api/category", { method: "GET" })
+  const ref = firebase.ref(firebaseConstants.DATABASE_CATEGORIES + '/')
+  return ref.once('value')
 }

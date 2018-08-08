@@ -1,5 +1,5 @@
-import Constants from "../constants/documentConstants"
-import * as DocumentService from "../services/documentService"
+import Constants from '../constants/documentConstants'
+import * as DocumentService from '../services/documentService'
 
 export function createDocument (documentName) {
   return {
