@@ -17,7 +17,6 @@ export default class Uploaded extends React.Component {
     const files = this.filesInput.files
 
     for (var key in files) {
-    // check if this is a file:
       if (files.hasOwnProperty(key) && files[key] instanceof File) {
         formData.append(key, files[key])
       }

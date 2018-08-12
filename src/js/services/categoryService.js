@@ -1,31 +1,34 @@
-import axios from 'axios'
-import firebase from './firebaseService'
+import firestore from './firebaseService'
 import firebaseConstants from '../constants/firebaseConstants'
 
 export function createCategory (short, name) {
-  const ref = firebase.ref(`${firebaseConstants.DATABASE_CATEGORIES}`)
-  const newChildRef = ref.push()
-  return newChildRef.set({short, name})
+  const promise = new Promise((resolve, reject) =>{
+    const toSave = {short, name}
+    const newCategoryRef = firestore.collection(firebaseConstants.DATABASE_CATEGORY).doc()
+    newCategoryRef.set(toSave).then(() =>{
+      resolve(toSave)
+    }).catch((error) => {
+      reject(error)
+    });
+  })
+  return promise
 }
 
 export function deleteCategory (id) {
-  
+
   const promise = new Promise((resolve, reject) => {
-    const ref = firebase.ref(`${firebaseConstants.DATABASE_CATEGORIES}/${id}`)
-
-    try {
-      ref.remove()
+    return firestore.collection(firebaseConstants.DATABASE_CATEGORY).doc(id)
+    .delete()
+    .then(() => {
       resolve(id)
-    } catch (error) {
+    })
+    .catch((error)=>{
       reject(error)
-    }
-    
+    })
   })
-
   return promise
 }
 
 export function fetchCategories () {
-  const ref = firebase.ref(firebaseConstants.DATABASE_CATEGORIES + '/')
-  return ref.once('value')
+  return firestore.collection(firebaseConstants.DATABASE_CATEGORY).get()
 }

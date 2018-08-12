@@ -1,13 +1,19 @@
+import firebase from './firebaseService'
+import firebaseConstants from '../constants/firebaseConstants'
+
 export function createFolder (name, category, count) {
-  return fetch("http://localhost:8081/api/folders", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({name, category, count})
+  const ref = firebase.ref(`${firebaseConstants.DATABASE_FOLDERS}`)
+  const childRef = ref.push()
+  return childRef.set({
+    name,
+    category,
+    count,
+    currentAmount: 0
   })
 }
 
 export function fetchFolders () {
-  return fetch("http://localhost:8081/api/folders", { method: "GET" })
+  const ref = firebase.ref(firebaseConstants.DATABASE_FOLDERS + '/')
+  const result = ref.once('value')
+  return result
 }

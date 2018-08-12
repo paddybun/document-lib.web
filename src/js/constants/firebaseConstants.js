@@ -1,7 +1,7 @@
 const firebaseConstants = {
-  DATABASE_CATEGORIES: "categories",
-  DATABASE_FOLDERS: "folders",
-  DATABASE_DOCUMENTS: "documents"
+  DATABASE_CATEGORY: "category",
+  DATABASE_FOLDERS: "folder",
+  DATABASE_DOCUMENTS: "document"
 }
 
 export default firebaseConstants

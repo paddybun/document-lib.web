@@ -22,9 +22,9 @@ export default class Folder extends React.Component {
     const rows = this.props.folders.map((item, index) => {
       return <tr key={item.id}>
         <td>{item.id}</td>
-        <td>{item.folderName}</td>
-        <td>{item.folderDocumentCount}/{item.folderMaxDocAmount}</td>
-        <td>{item.folderCategoryShort}</td>
+        <td>{item.name}</td>
+        <td>{item.currentAmount}/{item.count}</td>
+        <td>{item.category}</td>
         <td>
           <button class="btn btn-primary" title="Ordner bearbeiten" onClick={() => this.editFolder(this, item) }><i class="fa fa-file-text" aria-hidden="true"></i></button>
         </td>

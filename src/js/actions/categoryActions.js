@@ -2,9 +2,14 @@ import Constants from '../constants/categoryConstants'
 import * as CategoryService from '../services/categoryService'
 
 export function createCategory (short, name) {
-  return {
-    type: Constants.CREATE_CATEGORY,
-    payload: CategoryService.createCategory(short, name)
+  return function (dispatch) {
+    CategoryService.createCategory(short, name)
+      .then((response) => {
+        dispatch({type: Constants.CREATE_CATEGORY_FULFILLED, payload: {data: response}})
+      })
+      .catch((err) => {
+        dispatch({type: Constants.CREATE_CATEGORY_FULFILLED, payload: err})
+      })
   }
 }
 
@@ -27,14 +32,13 @@ export function getCategoriesFromServer () {
   return function (dispatch) {
     CategoryService.fetchCategories()
       .then((response) => {
-        return response.val()
+        return response.docs
       })
-      .then((json) => {
+      .then((docs) => {
         const array = []
-        Object.getOwnPropertyNames(json).forEach((propertyName) => {
-          const id = propertyName
-          const innerObject = json[id]
-          array.push({id: propertyName, short: innerObject.short, name: innerObject.name})
+        docs.forEach((item) => {
+          const toPush = Object.assign({id: item.id}, item.data())
+          array.push(toPush)
         })
         dispatch({type: Constants.FETCH_CATEGORIES_FULFILLED, payload: array})
       })

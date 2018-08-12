@@ -9,10 +9,10 @@ const cloneState = function (state) {
 const initialState = {
   folders: [{
     id: "",
-    folderName: undefined,
-    folderDocumentCount: 0,
-    folderMaxDocAmount: 0,
-    folderCategoryShort: undefined,
+    name: undefined,
+    count: 0,
+    currentAmount: 0,
+    category: undefined,
     version: undefined
   }]
 }
@@ -27,7 +27,10 @@ export default function reducer (state = initialState, action) {
       console.log("An error occurred: ", action.payload)
       break
     case Constants.FETCH_FOLDERS_FULFILLED:
-      state.folders = action.payload
+      state.folders = []
+      action.payload.forEach((item) => {
+        state.folders.push(item)
+      })
       break
     case Constants.FETCH_FOLDERS_REJECTED:
       console.log("An error occurred: ", action.payload)

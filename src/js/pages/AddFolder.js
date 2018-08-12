@@ -31,7 +31,7 @@ export default class AddFolder extends React.Component {
     this.props.dispatch(categoryActions.getCategoriesFromServer())
   }
 
-  handleChange (e) {
+  categoryChanged (e) {
     this.setState({selectedCategory: e.target.value})
   }
 
@@ -61,7 +61,7 @@ export default class AddFolder extends React.Component {
           <div class="row">
             <div class="col-2">Kategorie</div>
             <div class="col-3">
-              <Select selectOptions={this.props.categories} changeEvent={this.handleChange.bind(this)} keyItem="id" valueItem="short" displayItem="name"/>
+              <Select selectOptions={this.props.categories} changeEvent={this.categoryChanged.bind(this)} keyItem="id" valueItem="short" displayItem="name"/>
             </div>
           </div>
           <div class="row">
