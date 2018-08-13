@@ -1,4 +1,4 @@
-# Product Name
+# \<Document\>.Library
 
   > A document management system for the lazy. Designed after the random stock keeping principle.
 
