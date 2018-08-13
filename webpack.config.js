@@ -1,6 +1,8 @@
-var debug = process.env.NODE_ENV !== 'production'
-var path = require('path')
-var webpack = require('webpack')
+const debug = process.env.NODE_ENV !== 'production'
+const dotenv = require('dotenv');
+const path = require('path')
+const webpack = require('webpack')
+
 
 module.exports = {
   devtool: debug ? 'inline-sourcemap' : null,
