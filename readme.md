@@ -2,9 +2,9 @@
 
   > A document management system for the lazy. Designed after the random stock keeping principle.
 
-<!-- [![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url] -->
+## Master
+
+[![Build Status](https://semaphoreci.com/api/v1/paddybun/document-lib-api/branches/master/shields_badge.svg)](https://semaphoreci.com/paddybun/document-lib-api)
 
 ## Installation
 
