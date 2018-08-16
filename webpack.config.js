@@ -6,17 +6,22 @@ const webpack = require('webpack')
 module.exports = () => {
   return {
     devtool: debug ? 'inline-sourcemap' : null,
-    entry: ['whatwg-fetch', './src/js/client.js'],
+    entry: ['./src/js/client.js'],
+
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.js?$/,
           exclude: '/(node_modules|bower_components)/',
-          loader: 'babel-loader',
-          query: {
-            presets: ['react', 'env', 'stage-0'],
-            plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy']
-          }
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                presets: ['react', 'env', 'stage-0'],
+                plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy']
+              }
+            }
+          ]
         }
       ]
     },
