@@ -9,12 +9,13 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = () => {
   const env = dotenv.config().parsed;
-  
+
   const envKeys = Object.keys(env).reduce((prev, next) => {
     prev[`process.env.${next}`] = JSON.stringify(env[next]);
     return prev;
   }, {});
 
+  console.log(envKeys);
 
   return {
     devtool: debug ? 'inline-sourcemap' : null,
@@ -43,18 +44,10 @@ module.exports = () => {
     },
     plugins: [
       new webpack.DefinePlugin(envKeys)
-      // new webpack.DefinePlugin({
-      //   'process.env.NODE_ENV': JSON.stringify('development')
-      // })  
     ],
     output: {
       path: path.resolve(__dirname, 'build'),
       filename: 'build.js'
     }
-    // [
-    //   new webpack.optimize.DedupePlugin(),
-    //   new webpack.optimize.OccurenceOrderPlugin(),
-    //   new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false })
-    // ]
   }
 }

@@ -10,15 +10,15 @@ import * as categoryActions from "../actions/categoryActions";
   }
 })
 export default class Categories extends React.Component {
-  componentWillMount () {
+  componentWillMount() {
     this.props.dispatch(categoryActions.getCategoriesFromServer())
   }
 
-  deleteCategory (id) {
+  deleteCategory(id) {
     this.props.dispatch(categoryActions.deleteCategory(id))
   }
 
-  render () {
+  render() {
     const rows = this.props.categories.map((item) => {
       return <tr key={item.id}>
         <td scope="row">{item.id}</td>
@@ -31,7 +31,7 @@ export default class Categories extends React.Component {
     return (
       <div>
         <h1>Kategorien</h1>
-        <hr/>
+        <hr />
         <h2>Kategorie anlegen</h2>
         <div class="row">
           <div class="col">
@@ -43,18 +43,18 @@ export default class Categories extends React.Component {
         <br />
         <table class="table table-striped table-hover">
           <colgroup>
-            <col style={{width: "25%"}}/>
-            <col style={{width: "25%"}}/>
-            <col style={{width: "25%"}}/>
-            <col style={{width: "25%"}}/>
+            <col style={{ width: "25%" }} />
+            <col style={{ width: "25%" }} />
+            <col style={{ width: "25%" }} />
+            <col style={{ width: "25%" }} />
           </colgroup>
-          <tr>
-            <th>#</th>
-            <th>Kürzel</th>
-            <th>Kategorie</th>
-            <th>Optionen</th>
-          </tr>
           <tbody>
+            <tr>
+              <th>#</th>
+              <th>Kürzel</th>
+              <th>Kategorie</th>
+              <th>Optionen</th>
+            </tr>
             {rows}
           </tbody>
         </table>
