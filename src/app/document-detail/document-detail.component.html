@@ -1,0 +1,19 @@
+<h2>Document {{ document.name }}</h2>
+<div>
+  <div>
+    <label>id:</label>
+    <div><input type="text" [readOnly]="true" [(ngModel)]="document.id"></div>
+  </div>
+  <div>
+    <label>name:</label>
+    <div><input type="text" [(ngModel)]="document.name" placeholder="name"></div>
+  </div>
+  <div>
+    <label>date:</label>
+    <div><input type="text" [(ngModel)]="document.date" placeholder="date"></div>
+  </div>
+  <div>
+    <label>category:</label>
+    <div><app-category-selector (selectionChanged)="selectCategory($event)"></app-category-selector></div>
+  </div>
+</div>

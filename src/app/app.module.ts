@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +9,9 @@ import { CategoryComponent } from './category/category.component';
 import { TagComponent } from './tag/tag.component';
 import { TagDetailComponent } from './tag-detail/tag-detail.component';
 import { CategoryDetailComponent } from './category-detail/category-detail.component';
+import { DocumentComponent } from './document/document.component';
+import { DocumentDetailComponent } from './document-detail/document-detail.component';
+import { CategorySelectorComponent } from './category-selector/category-selector.component';
 
 
 @NgModule({
@@ -17,13 +20,17 @@ import { CategoryDetailComponent } from './category-detail/category-detail.compo
     CategoryComponent,
     TagComponent,
     TagDetailComponent,
-    CategoryDetailComponent
+    CategoryDetailComponent,
+    DocumentComponent,
+    DocumentDetailComponent,
+    CategorySelectorComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
