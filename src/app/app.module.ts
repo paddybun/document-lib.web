@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { CategoryComponent } from './category/category.component';
 import { TagComponent } from './tag/tag.component';
 import { TagDetailComponent } from './tag-detail/tag-detail.component';
+import { CategoryDetailComponent } from './category-detail/category-detail.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { TagDetailComponent } from './tag-detail/tag-detail.component';
     AppComponent,
     CategoryComponent,
     TagComponent,
-    TagDetailComponent
+    TagDetailComponent,
+    CategoryDetailComponent
   ],
   imports: [
     AppRoutingModule,

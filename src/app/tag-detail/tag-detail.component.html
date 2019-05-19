@@ -9,7 +9,7 @@
     <input type="text" [(ngModel)]="tag.name" placeholder="Tag name">
   </div>
   <div>
-    <input *ngIf="isCreating" type="button" value="Create" (click)="postTag()">
-    <input *ngIf="!isCreating" type="button" value="Update">
+    <input *ngIf="isCreating" type="button" value="Create" (click)="saveTag()">
+    <input *ngIf="!isCreating" type="button" value="Update" (click)="saveTag()">
   </div>
 </div>

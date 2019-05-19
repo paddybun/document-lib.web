@@ -1,9 +1,7 @@
-<h3>Categories</h3>
-
+<h2>Categories</h2>
 <ul *ngIf="categories">
+  <li><a routerLink="/category/create">New category</a></li>
   <li *ngFor="let category of categories">
-    <div id="{{ category.id }}">
-      {{ category.abbreviation }}
-    </div>
+    <a routerLink="/category/{{category.id}}">{{ category.name }}</a>
   </li>
 </ul>

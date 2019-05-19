@@ -28,4 +28,12 @@ export class TagService {
     }
     return this.http.put<TagData>('https://localhost:5001/api/tag', tag, options);
   }
+  postTag(tag: TagData): Observable<TagData> {
+    const options = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    return this.http.post<TagData>('https://localhost:5001/api/tag', tag, options);
+  }
 }

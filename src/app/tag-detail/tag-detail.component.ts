@@ -31,8 +31,13 @@ export class TagDetailComponent implements OnInit {
         .subscribe(tag => this.tag = tag);
   }
 
-  postTag(): void {
-    this.tagService.putTag(this.tag)
-      .subscribe(tag => this.tag = tag);
+  saveTag(): void {
+    if (this.isCreating) {
+      this.tagService.putTag(this.tag)
+        .subscribe(tag => this.tag = tag);
+    } else {
+      this.tagService.postTag(this.tag)
+        .subscribe(tag => this.tag = tag);
+    }
   }
 }
