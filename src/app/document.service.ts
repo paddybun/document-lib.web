@@ -18,4 +18,11 @@ export class DocumentService {
   getDocument(id: string): Observable<DocumentData> {
     return this.http.get<DocumentData>(`https://localhost:5001/api/document/${id}`);
   }
+
+  putDocuments(documentForm: FormData) {
+    return this.http.put('https://localhost:5001/api/document', documentForm, {
+      reportProgress: true,
+      observe: 'events'
+    });
+  }
 }

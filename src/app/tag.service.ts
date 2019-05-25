@@ -20,7 +20,6 @@ export class TagService {
   }
 
   putTag(tag: TagData): Observable<TagData> {
-    console.log('posting tag: ' + JSON.stringify(tag))
     const options = {
       headers: {
         'Content-Type': 'application/json'
