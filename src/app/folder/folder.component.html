@@ -1,0 +1,12 @@
+<h2>Folders</h2>
+
+<div>
+  <ul>
+    <li>
+      <a routerLink="/document/create">New Folder</a>
+    </li>
+    <li *ngFor="let folder of folders">
+      <a routerLink="/document/{{ folder.id }}">{{ folder.name }}</a>
+    </li>
+  </ul>
+</div>

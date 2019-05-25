@@ -12,6 +12,8 @@ import { CategoryDetailComponent } from './category-detail/category-detail.compo
 import { DocumentComponent } from './document/document.component';
 import { DocumentDetailComponent } from './document-detail/document-detail.component';
 import { CategorySelectorComponent } from './category-selector/category-selector.component';
+import { FolderComponent } from './folder/folder.component';
+import { FolderDetailComponent } from './folder-detail/folder-detail.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { CategorySelectorComponent } from './category-selector/category-selector
     CategoryDetailComponent,
     DocumentComponent,
     DocumentDetailComponent,
-    CategorySelectorComponent
+    CategorySelectorComponent,
+    FolderComponent,
+    FolderDetailComponent
   ],
   imports: [
     AppRoutingModule,
