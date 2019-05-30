@@ -14,4 +14,26 @@ export class FolderService {
   getFolders(): Observable<FolderData[]> {
     return this.http.get<FolderData[]>('https://localhost:5001/api/folder');
   }
+
+  getFolder(id): Observable<FolderData> {
+    return this.http.get<FolderData>(`https://localhost:5001/api/folder/${id}`);
+  }
+
+  putFolder(folder: FolderData): Observable<FolderData> {
+    const options = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    return this.http.put<FolderData>('https://localhost:5001/api/folder', folder, options);
+  }
+
+  postFolder(folder: FolderData): Observable<FolderData> {
+    const options = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    return this.http.post<FolderData>('https://localhost:5001/api/folder', folder, options);
+  }
 }

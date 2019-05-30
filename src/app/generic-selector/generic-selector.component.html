@@ -1,0 +1,4 @@
+<select (change)="onChange($event)">
+  <option></option>
+  <option *ngFor="let item of datasource" value="{{ item.id }}">{{ item.value }}</option>
+</select>

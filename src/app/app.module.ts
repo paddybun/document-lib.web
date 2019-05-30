@@ -14,6 +14,7 @@ import { DocumentDetailComponent } from './document-detail/document-detail.compo
 import { CategorySelectorComponent } from './category-selector/category-selector.component';
 import { FolderComponent } from './folder/folder.component';
 import { FolderDetailComponent } from './folder-detail/folder-detail.component';
+import { GenericSelectorComponent } from './generic-selector/generic-selector.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { FolderDetailComponent } from './folder-detail/folder-detail.component';
     DocumentDetailComponent,
     CategorySelectorComponent,
     FolderComponent,
-    FolderDetailComponent
+    FolderDetailComponent,
+    GenericSelectorComponent
   ],
   imports: [
     AppRoutingModule,

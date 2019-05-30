@@ -8,6 +8,9 @@ import {DocumentData} from '../document-data';
 import {DocumentService} from '../document.service';
 import {HttpEventType} from '@angular/common/http';
 import {$e} from 'codelyzer/angular/styles/chars';
+import {CategoryService} from '../category.service';
+import {SelectorDataItem} from '../selector-data-item';
+import {FolderService} from '../folder.service';
 
 @Component({
   selector: 'app-document-detail',
@@ -15,6 +18,8 @@ import {$e} from 'codelyzer/angular/styles/chars';
   styleUrls: ['./document-detail.component.css']
 })
 export class DocumentDetailComponent implements OnInit {
+  categories: SelectorDataItem[];
+  folders: SelectorDataItem[];
   document: DocumentData;
   category: CategoryData;
   isCreating = false;
@@ -23,13 +28,23 @@ export class DocumentDetailComponent implements OnInit {
 
   constructor(
     private documentService: DocumentService,
+    private categoryService: CategoryService,
+    private folderService: FolderService,
     private location: Location,
-    private route: ActivatedRoute,
-    private fb: FormBuilder,
-    private cd: ChangeDetectorRef
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.categoryService.getCategories()
+      .subscribe(val => {
+        this.categories = val.map(item => new SelectorDataItem(item.id, item.name));
+      });
+
+    this.folderService.getFolders()
+      .subscribe(val => {
+        this.folders = val.map(item => new SelectorDataItem(item.id, item.name));
+      });
+
     const id = this.route.snapshot.paramMap.get('id');
     if (id === 'create') {
       this.isCreating = true;
@@ -45,10 +60,15 @@ export class DocumentDetailComponent implements OnInit {
     this.formGroup.addControl('date', new FormControl(this.document.date));
     this.formGroup.addControl('file', new FormControl());
     this.formGroup.addControl('category', new FormControl());
+    this.formGroup.addControl('folder', new FormControl());
   }
 
-  selectCategory($event: CategoryData): void {
-    this.formGroup.get('category').setValue($event.id);
+  selectCategory(categoryId: string): void {
+    this.formGroup.get('category').setValue(categoryId);
+  }
+
+  selectFolder(folderId: string): void {
+    this.formGroup.get('folder').setValue(folderId);
   }
 
   onFileChange(event) {
@@ -65,6 +85,7 @@ export class DocumentDetailComponent implements OnInit {
     formData.append('date', this.formGroup.get('date').value);
     formData.append('file', this.formGroup.get('file').value);
     formData.append('category', this.formGroup.get('category').value);
+    formData.append('folder', this.formGroup.get('folder').value);
     formData.append('tags', '');
 
     this.documentService.putDocuments(formData)

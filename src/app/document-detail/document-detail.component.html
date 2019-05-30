@@ -15,7 +15,15 @@
     </div>
     <div>
       <label>category:</label>
-      <div><app-category-selector (selectionChanged)="selectCategory($event)"></app-category-selector></div>
+      <div>
+        <app-generic-selector [datasource]="categories" (selectionChanged)="selectCategory($event)"></app-generic-selector>
+      </div>
+    </div>
+    <div>
+      <label>folder:</label>
+      <div>
+        <app-generic-selector [datasource]="folders" (selectionChanged)="selectFolder($event)"></app-generic-selector>
+      </div>
     </div>
   </div>
   <div>
