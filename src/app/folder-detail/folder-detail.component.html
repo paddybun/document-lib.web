@@ -2,21 +2,21 @@
   <h2>Folder: {{ folder.name }}</h2>
   <div>
     <div>
-      <label>id:</label>
+      <label for="id">id:</label>
       <div>
-        <input type="text" value="{{ folder.id }}" [disabled]="isCreating">
+        <input id="id" type="text" value="{{ folder.id }}" [disabled]="isCreating">
       </div>
     </div>
     <div>
-      <label>name:</label>
+      <label for="name">name:</label>
       <div>
-        <input type="text" [(ngModel)]="folder.name" placeholder="Folder name">
+        <input id="name" type="text" [(ngModel)]="folder.name" placeholder="Folder name">
       </div>
     </div>
     <div>
-      <label>count:</label>
+      <label for="count">count:</label>
       <div>
-        <input type="text" [(ngModel)]="folder.documentCount" disabled>
+        <input id="count" type="text" [(ngModel)]="folder.documentCount" disabled>
       </div>
     </div>
     <div>

@@ -1,21 +1,21 @@
 <h2>Category: {{ category.abbreviation }} | {{ category.name }}</h2>
 <div>
   <div>
-    <label>id:</label>
+    <label for="id">id:</label>
     <div>
-      <input type="text" value="{{ category.id }}" [disabled]="true">
+      <input id="id" type="text" value="{{ category.id }}" [disabled]="true">
     </div>
   </div>
   <div>
-    <label>name:</label>
+    <label for="name">name:</label>
     <div>
-      <input type="text" [(ngModel)]="category.name" placeholder="Tag name">
+      <input id="name" type="text" [(ngModel)]="category.name" placeholder="Tag name">
     </div>
   </div>
   <div>
-    <label>short:</label>
+    <label for="short">short:</label>
     <div>
-      <input type="text" [(ngModel)]="category.abbreviation" placeholder="Tag short description">
+      <input id="short" type="text" [(ngModel)]="category.abbreviation" placeholder="Tag short description">
     </div>
   </div>
   <div>

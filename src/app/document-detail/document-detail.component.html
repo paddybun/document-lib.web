@@ -2,26 +2,26 @@
 <form [formGroup]="formGroup" novalidate (ngSubmit)="submit()">
   <div>
     <div>
-      <label>id:</label>
-      <div><input type="text" [readOnly]="true" formControlName="id"></div>
+      <label for="id">id:</label>
+      <div><input id="id" type="text" [readOnly]="true" formControlName="id"></div>
     </div>
     <div>
-      <label>name:</label>
-      <div><input type="text" formControlName="name" placeholder="name"></div>
+      <label for="name">name:</label>
+      <div><input id="name"  type="text" formControlName="name" placeholder="name"></div>
     </div>
     <div>
-      <label>date:</label>
-      <div><input type="text" formControlName="date" placeholder="date"></div>
+      <label for="date">date:</label>
+      <div><input id="date" type="text" formControlName="date" placeholder="date"></div>
     </div>
     <div>
-      <label>category:</label>
-      <div>
+      <label for="cat">category:</label>
+      <div id="cat">
         <app-generic-selector [datasource]="categories" (selectionChanged)="selectCategory($event)"></app-generic-selector>
       </div>
     </div>
     <div>
-      <label>folder:</label>
-      <div>
+      <label for="folder">folder:</label>
+      <div id="folder">
         <app-generic-selector [datasource]="folders" (selectionChanged)="selectFolder($event)"></app-generic-selector>
       </div>
     </div>
