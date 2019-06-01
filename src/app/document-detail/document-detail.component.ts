@@ -1,13 +1,12 @@
 import {ActivatedRoute} from '@angular/router';
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
 import {Location} from '@angular/common';
 
 import {CategoryData} from '../category-data';
 import {DocumentData} from '../document-data';
 import {DocumentService} from '../document.service';
 import {HttpEventType} from '@angular/common/http';
-import {$e} from 'codelyzer/angular/styles/chars';
 import {CategoryService} from '../category.service';
 import {SelectorDataItem} from '../selector-data-item';
 import {FolderService} from '../folder.service';
@@ -18,12 +17,19 @@ import {FolderService} from '../folder.service';
   styleUrls: ['./document-detail.component.css']
 })
 export class DocumentDetailComponent implements OnInit {
+  isCreating = false;
   categories: SelectorDataItem[];
   folders: SelectorDataItem[];
   document: DocumentData;
   category: CategoryData;
-  isCreating = false;
-  formGroup = new FormGroup({});
+  formGroup = new FormGroup({
+    id: new FormControl(),
+    name: new FormControl(),
+    date: new FormControl(),
+    file: new FormControl(),
+    category: new FormControl(),
+    folder: new FormControl()
+  });
   fileData: File;
 
   constructor(
@@ -52,15 +58,19 @@ export class DocumentDetailComponent implements OnInit {
       this.document.name = 'New document';
     } else {
       this.documentService.getDocument(id)
-        .subscribe(doc => this.document = doc);
+        .subscribe(doc => {
+          this.document = doc;
+          this.formGroup.get('id').setValue(this.document.id);
+          this.formGroup.get('name').setValue(this.document.name);
+          this.formGroup.get('date').setValue(this.document.date);
+          this.folders.forEach(item => {
+            if (item.id.toLowerCase() === doc.folder.toLowerCase()) { item.preselected = true; }
+          });
+          this.categories.forEach(item => {
+            if (item.id.toLowerCase() === doc.category.toLowerCase()) { item.preselected = true; }
+          });
+        });
     }
-
-    this.formGroup.addControl('id', new FormControl(this.document.id));
-    this.formGroup.addControl('name', new FormControl(this.document.name));
-    this.formGroup.addControl('date', new FormControl(this.document.date));
-    this.formGroup.addControl('file', new FormControl());
-    this.formGroup.addControl('category', new FormControl());
-    this.formGroup.addControl('folder', new FormControl());
   }
 
   selectCategory(categoryId: string): void {
@@ -88,14 +98,26 @@ export class DocumentDetailComponent implements OnInit {
     formData.append('folder', this.formGroup.get('folder').value);
     formData.append('tags', '');
 
-    this.documentService.putDocuments(formData)
-      .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          console.log('uploading');
-        }
-        if (event.type === HttpEventType.Response) {
-          console.log(event.body);
-        }
-      });
+    if (this.isCreating) {
+      this.documentService.postDocument(formData)
+        .subscribe(event => {
+          if (event.type === HttpEventType.UploadProgress) {
+            console.log('uploading');
+          }
+          if (event.type === HttpEventType.Response) {
+            console.log(event.body);
+          }
+        });
+    } else {
+      this.documentService.putDocument(formData)
+        .subscribe(event => {
+          if (event.type === HttpEventType.UploadProgress) {
+            console.log('uploading');
+          }
+          if (event.type === HttpEventType.Response) {
+            console.log(event.body);
+          }
+        });
+    }
   }
 }

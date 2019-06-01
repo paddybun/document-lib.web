@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SelectorDataItem } from '../selector-data-item';
 
 @Component({
@@ -6,7 +6,7 @@ import { SelectorDataItem } from '../selector-data-item';
   templateUrl: './generic-selector.component.html',
   styleUrls: ['./generic-selector.component.css']
 })
-export class GenericSelectorComponent implements OnInit, OnChanges {
+export class GenericSelectorComponent implements OnInit {
   @Output() selectionChanged = new EventEmitter<string>();
   @Input() datasource: SelectorDataItem[];
   constructor() { }
@@ -20,9 +20,5 @@ export class GenericSelectorComponent implements OnInit, OnChanges {
     })[0];
 
     this.selectionChanged.emit(selectedItem.id);
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
   }
 }

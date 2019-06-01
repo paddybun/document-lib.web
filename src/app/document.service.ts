@@ -8,7 +8,6 @@ import { DocumentData } from './document-data';
   providedIn: 'root'
 })
 export class DocumentService {
-
   constructor(private http: HttpClient) { }
 
   getDocuments(): Observable<DocumentData[]> {
@@ -19,7 +18,13 @@ export class DocumentService {
     return this.http.get<DocumentData>(`https://localhost:5001/api/document/${id}`);
   }
 
-  putDocuments(documentForm: FormData) {
+  postDocument(documentForm: FormData) {
+    return this.http.post('https://localhost:5001/api/document', documentForm, {
+      reportProgress: true,
+      observe: 'events'
+    });
+  }
+  putDocument(documentForm: FormData) {
     return this.http.put('https://localhost:5001/api/document', documentForm, {
       reportProgress: true,
       observe: 'events'

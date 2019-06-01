@@ -6,4 +6,5 @@ export class SelectorDataItem {
 
   id: string;
   value: string;
+  preselected: boolean;
 }
