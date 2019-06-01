@@ -11,7 +11,6 @@ import { TagDetailComponent } from './tag-detail/tag-detail.component';
 import { CategoryDetailComponent } from './category-detail/category-detail.component';
 import { DocumentComponent } from './document/document.component';
 import { DocumentDetailComponent } from './document-detail/document-detail.component';
-import { CategorySelectorComponent } from './category-selector/category-selector.component';
 import { FolderComponent } from './folder/folder.component';
 import { FolderDetailComponent } from './folder-detail/folder-detail.component';
 import { GenericSelectorComponent } from './generic-selector/generic-selector.component';
@@ -26,7 +25,6 @@ import { GenericSelectorComponent } from './generic-selector/generic-selector.co
     CategoryDetailComponent,
     DocumentComponent,
     DocumentDetailComponent,
-    CategorySelectorComponent,
     FolderComponent,
     FolderDetailComponent,
     GenericSelectorComponent
