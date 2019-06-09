@@ -11,6 +11,10 @@
         <div><input id="name"  type="text" formControlName="name" placeholder="name"></div>
       </div>
       <div>
+        <label for="blobname">blobname:</label>
+        <div><input id="blobname" type="text" [readOnly]="true" value="{{document.blobname}}"></div>
+      </div>
+      <div>
         <label for="date">date:</label>
         <div><input id="date" type="text" formControlName="date" placeholder="date"></div>
       </div>
