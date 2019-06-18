@@ -3,23 +3,23 @@
   <div>
     <label for="id">id:</label>
     <div>
-      <input id="id" type="text" value="{{ category.id }}" [disabled]="true">
+      <input class="input is-primary" id="id" type="text" value="{{ category.id }}" [disabled]="true">
     </div>
   </div>
   <div>
     <label for="name">name:</label>
     <div>
-      <input id="name" type="text" [(ngModel)]="category.name" placeholder="Tag name">
+      <input class="input is-primary" id="name" type="text" [(ngModel)]="category.name" placeholder="Tag name">
     </div>
   </div>
   <div>
     <label for="short">short:</label>
     <div>
-      <input id="short" type="text" [(ngModel)]="category.abbreviation" placeholder="Tag short description">
+      <input class="input is-primary" id="short" type="text" [(ngModel)]="category.abbreviation" placeholder="Tag short description">
     </div>
   </div>
   <div>
-    <input *ngIf="isCreating" type="button" value="Create" (click)="saveCategory()">
-    <input *ngIf="!isCreating" type="button" value="Update" (click)="saveCategory()">
+    <button class="button" *ngIf="isCreating" (click)="saveCategory()">Create</button>
+    <button class="button" *ngIf="!isCreating" (click)="saveCategory()">Update</button>
   </div>
 </div>

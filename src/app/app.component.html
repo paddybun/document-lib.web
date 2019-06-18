@@ -1,10 +1,16 @@
 <h1>Document Library</h1>
-<nav>
-  <ul>
-    <li><a routerLink="/category">Category</a></li>
-    <li><a routerLink="/document">Document</a></li>
-    <li><a routerLink="/folder">Folders</a></li>
-    <li><a routerLink="/tag">Tag</a></li>
-  </ul>
-</nav>
-<router-outlet></router-outlet>
+<section class="section">
+  <div class="container">
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <a class="navbar-item" routerLink="/category">Category</a>
+        <a class="navbar-item" routerLink="/document">Document</a>
+        <a class="navbar-item" routerLink="/folder">Folders</a>
+        <a class="navbar-item" routerLink="/tag">Tag</a>
+      </div>
+    </nav>
+  </div>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</section>
