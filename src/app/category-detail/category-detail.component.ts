@@ -11,7 +11,7 @@ import {CategoryData} from '../category-data';
   styleUrls: ['./category-detail.component.css']
 })
 export class CategoryDetailComponent implements OnInit {
-  category: CategoryData;
+  category: CategoryData = new CategoryData();
   isCreating = false;
 
   constructor(private categoryService: CategoryService, private location: Location, private route: ActivatedRoute) { }
@@ -20,7 +20,6 @@ export class CategoryDetailComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id === 'create') {
       this.isCreating = true;
-      this.category = new CategoryData();
     } else {
       this.getCategory(id);
     }

@@ -38,7 +38,8 @@ export class DocumentDetailComponent implements OnInit {
     private folderService: FolderService,
     private location: Location,
     private route: ActivatedRoute
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.categoryService.getCategories()
@@ -64,10 +65,16 @@ export class DocumentDetailComponent implements OnInit {
           this.formGroup.get('name').setValue(this.document.name);
           this.formGroup.get('date').setValue(this.document.date);
           this.folders.forEach(item => {
-            if (item.id.toLowerCase() === doc.folder.toLowerCase()) { item.preselected = true; }
+            if (item.id.toLowerCase() === doc.folder.toLowerCase()) {
+              item.preselected = true;
+              this.formGroup.get('folder').setValue(item.id);
+            }
           });
           this.categories.forEach(item => {
-            if (item.id.toLowerCase() === doc.category.toLowerCase()) { item.preselected = true; }
+            if (item.id.toLowerCase() === doc.category.toLowerCase()) {
+              item.preselected = true;
+              this.formGroup.get('category').setValue(item.id);
+            }
           });
         });
     }
