@@ -35,4 +35,8 @@ export class CategoryService {
     };
     return this.http.post<CategoryData>('https://localhost:5001/api/category', category, options);
   }
+
+  deleteCategory(category: CategoryData) {
+    return this.http.delete(`https://localhost:5001/api/category/${category.id}`, { responseType: 'text' })
+  }
 }

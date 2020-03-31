@@ -18,12 +18,17 @@ export class DocumentService {
     return this.http.get<DocumentData>(`https://localhost:5001/api/document/${id}`);
   }
 
+  deleteDocument(id: string) {
+    return this.http.delete(`https://localhost:5001/api/document/${id}`, { responseType: 'text' });
+  }
+
   postDocument(documentForm: FormData) {
     return this.http.post('https://localhost:5001/api/document', documentForm, {
       reportProgress: true,
       observe: 'events'
     });
   }
+
   putDocument(documentForm: FormData) {
     return this.http.put('https://localhost:5001/api/document', documentForm, {
       reportProgress: true,

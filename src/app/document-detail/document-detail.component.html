@@ -14,9 +14,12 @@
         <label for="blobname">blobname:</label>
         <div><input id="blobname" type="text" [readOnly]="true" value="{{document.blobname}}"></div>
       </div>
+      <div *ngIf="!isNew">
+        <a href="https://localhost:5001/api/document/download/{{document.id}}" target="_self">Download</a>
+      </div>
       <div>
         <label for="date">date:</label>
-        <div><input id="date" type="text" formControlName="date" placeholder="date"></div>
+        <div><input id="date" type="date" formControlName="date" placeholder="date"></div>
       </div>
       <div>
         <label for="cat">category:</label>
@@ -39,4 +42,5 @@
       <button type="submit">Submit</button>
     </div>
   </form>
+  <button (click)="deleteDocument()">Delete</button>
 </div>

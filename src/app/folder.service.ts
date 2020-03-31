@@ -36,4 +36,8 @@ export class FolderService {
     };
     return this.http.post<FolderData>('https://localhost:5001/api/folder', folder, options);
   }
+
+  deleteFolder(id) {
+    return this.http.delete(`https://localhost:5001/api/folder/${id}`, { responseType: 'text' });
+  }
 }

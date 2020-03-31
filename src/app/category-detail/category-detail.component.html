@@ -21,5 +21,6 @@
   <div>
     <button class="button" *ngIf="isCreating" (click)="saveCategory()">Create</button>
     <button class="button" *ngIf="!isCreating" (click)="saveCategory()">Update</button>
+    <button class="button" *ngIf="!isCreating" (click)="deleteCategory()">Delete</button>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
@@ -14,7 +14,7 @@ export class CategoryDetailComponent implements OnInit {
   category: CategoryData = new CategoryData();
   isCreating = false;
 
-  constructor(private categoryService: CategoryService, private location: Location, private route: ActivatedRoute) { }
+  constructor(private categoryService: CategoryService, private location: Location, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -38,5 +38,13 @@ export class CategoryDetailComponent implements OnInit {
       this.categoryService.postCategory(this.category)
         .subscribe(cat => this.category = cat);
     }
+  }
+
+  deleteCategory() {
+    this.categoryService.deleteCategory(this.category).subscribe(res => {
+      if (res === 'deleted') {
+        this.router.navigate(['/category'])
+      }
+    })
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FolderData } from '../folder-data';
 import { FolderService } from '../folder.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-folder-detail',
@@ -12,7 +12,7 @@ export class FolderDetailComponent implements OnInit {
   folder: FolderData;
   isCreating = false;
 
-  constructor(private folderService: FolderService, private route: ActivatedRoute) { }
+  constructor(private folderService: FolderService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     const folderId = this.route.snapshot.paramMap.get('id');
@@ -35,5 +35,14 @@ export class FolderDetailComponent implements OnInit {
       this.folderService.putFolder(this.folder)
         .subscribe(val => this.folder = val);
     }
+  }
+
+  deleteFolder() {
+    this.folderService.deleteFolder(this.folder.id)
+      .subscribe(res => {
+        if (res === 'deleted') {
+          this.router.navigate(['/folder'])
+        }
+      })
   }
 }

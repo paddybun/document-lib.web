@@ -1,4 +1,4 @@
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Location} from '@angular/common';
@@ -11,13 +11,15 @@ import {CategoryService} from '../category.service';
 import {SelectorDataItem} from '../selector-data-item';
 import {FolderService} from '../folder.service';
 
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-document-detail',
   templateUrl: './document-detail.component.html',
   styleUrls: ['./document-detail.component.css']
 })
 export class DocumentDetailComponent implements OnInit {
-  isCreating = false;
+  isNew = false;
   categories: SelectorDataItem[];
   folders: SelectorDataItem[];
   document: DocumentData;
@@ -37,7 +39,8 @@ export class DocumentDetailComponent implements OnInit {
     private categoryService: CategoryService,
     private folderService: FolderService,
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
   }
 
@@ -54,28 +57,13 @@ export class DocumentDetailComponent implements OnInit {
 
     const id = this.route.snapshot.paramMap.get('id');
     if (id === 'create') {
-      this.isCreating = true;
+      this.isNew = true;
       this.document = new DocumentData();
       this.document.name = 'New document';
     } else {
       this.documentService.getDocument(id)
         .subscribe(doc => {
-          this.document = doc;
-          this.formGroup.get('id').setValue(this.document.id);
-          this.formGroup.get('name').setValue(this.document.name);
-          this.formGroup.get('date').setValue(this.document.date);
-          this.folders.forEach(item => {
-            if (item.id.toLowerCase() === doc.folder.toLowerCase()) {
-              item.preselected = true;
-              this.formGroup.get('folder').setValue(item.id);
-            }
-          });
-          this.categories.forEach(item => {
-            if (item.id.toLowerCase() === doc.category.toLowerCase()) {
-              item.preselected = true;
-              this.formGroup.get('category').setValue(item.id);
-            }
-          });
+          this.setFormData(doc);
         });
     }
   }
@@ -95,6 +83,15 @@ export class DocumentDetailComponent implements OnInit {
     }
   }
 
+  deleteDocument() {
+    this.documentService.deleteDocument(this.document.id)
+      .subscribe(res => {
+        if (res === 'deleted') {
+          this.router.navigate(["/document"]);
+        }
+      });
+  }
+
   submit() {
     const formData = new FormData();
     formData.append('id', this.formGroup.get('id').value);
@@ -105,14 +102,14 @@ export class DocumentDetailComponent implements OnInit {
     formData.append('folder', this.formGroup.get('folder').value);
     formData.append('tags', '');
 
-    if (this.isCreating) {
+    if (this.isNew) {
       this.documentService.postDocument(formData)
         .subscribe(event => {
           if (event.type === HttpEventType.UploadProgress) {
             console.log('uploading');
           }
           if (event.type === HttpEventType.Response) {
-            console.log(event.body);
+            this.setFormData(event.body as DocumentData);
           }
         });
     } else {
@@ -122,9 +119,29 @@ export class DocumentDetailComponent implements OnInit {
             console.log('uploading');
           }
           if (event.type === HttpEventType.Response) {
-            console.log(event.body);
+            this.setFormData(event.body as DocumentData);
           }
         });
     }
+  }
+
+  setFormData(doc: DocumentData) {
+    this.document = doc;
+    console.log(this.document);
+    this.formGroup.get('id').setValue(this.document.id);
+    this.formGroup.get('name').setValue(this.document.name);
+    this.formGroup.get('date').setValue(moment(this.document.date).format('YYYY-MM-DD'));
+    this.folders.forEach(item => {
+      if (item.id.toLowerCase() === doc.folder.toLowerCase()) {
+        item.preselected = true;
+        this.formGroup.get('folder').setValue(item.id);
+      }
+    });
+    this.categories.forEach(item => {
+      if (item.id.toLowerCase() === doc.category.toLowerCase()) {
+        item.preselected = true;
+        this.formGroup.get('category').setValue(item.id);
+      }
+    });
   }
 }
