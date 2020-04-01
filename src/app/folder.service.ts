@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { FolderData } from './folder-data';
+import {RegisterData} from './register-data';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class FolderService {
     return this.http.get<FolderData>(`https://localhost:5001/api/folder/${id}`);
   }
 
+  getRegisters(id): Observable<RegisterData[]> {
+    return this.http.get<RegisterData[]>(`https://localhost:5001/api/folder/registers/${id}`);
+  }
+
   putFolder(folder: FolderData): Observable<FolderData> {
     const options = {
       headers: {
@@ -26,6 +31,19 @@ export class FolderService {
       }
     };
     return this.http.put<FolderData>('https://localhost:5001/api/folder', folder, options);
+  }
+
+  putRegister(register: RegisterData): Observable<RegisterData> {
+    const options = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    const id = register.id;
+    const displayName = register.displayName;
+
+    return this.http.put<RegisterData>('https://localhost:5001/api/folder/register', {id, displayName}, options);
   }
 
   postFolder(folder: FolderData): Observable<FolderData> {

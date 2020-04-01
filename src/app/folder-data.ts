@@ -5,3 +5,4 @@ export class FolderData {
   documentCount: number;
   registers: string[];
 }
+

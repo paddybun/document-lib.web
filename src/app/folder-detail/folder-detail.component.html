@@ -25,4 +25,13 @@
       <input *ngIf="!isCreating" type="button" value="Delete" (click)="deleteFolder()">
     </div>
   </div>
+  <h2>Registers</h2>
+  <div>
+    <div *ngFor="let register of registers">
+      <input type="text" [(ngModel)]="register.displayName">
+      <span>{{ register.name }}</span>
+      <span>{{ register.documentCount }}</span>
+      <button (click)="saveRegister(register.id)">Update</button>
+    </div>
+  </div>
 </div>
