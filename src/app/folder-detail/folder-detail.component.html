@@ -28,6 +28,7 @@
   <h2>Registers</h2>
   <div>
     <div *ngFor="let register of registers">
+      <span># {{register.order}}</span>
       <input type="text" [(ngModel)]="register.displayName">
       <span>{{ register.name }}</span>
       <span>{{ register.documentCount }}</span>

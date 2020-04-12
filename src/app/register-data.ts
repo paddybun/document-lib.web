@@ -3,4 +3,5 @@ export class RegisterData {
   name: string;
   documentCount: string;
   displayName: string;
+  order: number;
 }
