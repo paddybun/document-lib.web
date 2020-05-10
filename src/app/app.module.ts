@@ -14,6 +14,7 @@ import { DocumentDetailComponent } from './document-detail/document-detail.compo
 import { FolderComponent } from './folder/folder.component';
 import { FolderDetailComponent } from './folder-detail/folder-detail.component';
 import { GenericSelectorComponent } from './generic-selector/generic-selector.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { GenericSelectorComponent } from './generic-selector/generic-selector.co
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

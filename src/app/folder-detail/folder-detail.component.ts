@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FolderData } from '../folder-data';
-import { FolderService } from '../folder.service';
+import {Component, OnInit} from '@angular/core';
+import {FolderData} from '../folder-data';
+import {FolderService} from '../folder.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RegisterData} from '../register-data';
+import {faCheck, faTimes} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-folder-detail',
@@ -13,8 +14,14 @@ export class FolderDetailComponent implements OnInit {
   folder: FolderData;
   registers: RegisterData[];
   isCreating = false;
+  icons = {
+    faCheck,
+    faTimes
+  };
+  check = faCheck;
 
-  constructor(private folderService: FolderService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private folderService: FolderService, private route: ActivatedRoute, private router: Router) {
+  }
 
   ngOnInit() {
     const folderId = this.route.snapshot.paramMap.get('id');
@@ -25,9 +32,9 @@ export class FolderDetailComponent implements OnInit {
       this.folder.name = 'New Folder';
     } else {
       this.folderService.getFolder(folderId)
-        .subscribe( val => this.folder = val);
+        .subscribe(val => this.folder = val);
       this.folderService.getRegisters(folderId)
-        .subscribe(regs => this.registers = regs)
+        .subscribe(regs => this.registers = regs);
     }
   }
 
@@ -53,6 +60,16 @@ export class FolderDetailComponent implements OnInit {
   saveRegister(id: string) {
     const reg = this.registers.find(reg => reg.id === id);
     this.folderService.putRegister(reg)
+      .subscribe(res => {
+        console.log(res);
+      });
+  }
+
+  makeActive(id: string) {
+    const reg = this.registers.find(reg => reg.id === id);
+    this.registers.forEach(reg => reg.isActive = false);
+    reg.isActive = true;
+    this.folderService.makeRegisterActive(reg)
       .subscribe(res => {
         console.log(res);
       });

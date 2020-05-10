@@ -46,6 +46,19 @@ export class FolderService {
     return this.http.put<RegisterData>('https://localhost:5001/api/folder/register', {id, displayName}, options);
   }
 
+  makeRegisterActive (register: RegisterData): Observable<RegisterData> {
+    const options = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    const id = register.id;
+    const isActive = true;
+
+    return this.http.put<RegisterData>('https://localhost:5001/api/folder/register', {id, isActive}, options);
+  }
+
   postFolder(folder: FolderData): Observable<FolderData> {
     const options = {
       headers: {

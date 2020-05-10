@@ -4,4 +4,5 @@ export class RegisterData {
   documentCount: string;
   displayName: string;
   order: number;
+  isActive: boolean;
 }

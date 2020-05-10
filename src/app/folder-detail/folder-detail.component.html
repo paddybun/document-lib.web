@@ -27,12 +27,38 @@
   </div>
   <h2>Registers</h2>
   <div>
-    <div *ngFor="let register of registers">
-      <span># {{register.order}}</span>
-      <input type="text" [(ngModel)]="register.displayName">
-      <span>{{ register.name }}</span>
-      <span>{{ register.documentCount }}</span>
-      <button (click)="saveRegister(register.id)">Update</button>
+    <div class="columns">
+      <div class="column is-half">
+        <div class="columns">
+          <div class="column is-1">#</div>
+          <div class="column is-1">Active</div>
+          <div class="column is-4">Display Name</div>
+          <div class="column is-1">Count</div>
+          <div class="column is-1"></div>
+          <div class="column"></div>
+        </div>
+        <div *ngFor="let register of registers" class="columns">
+          <div class="column is-1">
+            {{register.order}}
+          </div>
+          <div class="column is-1">
+            <fa-icon *ngIf="register.isActive" [icon]="icons.faCheck" [styles]="{ 'color': 'green' }"></fa-icon>
+            <fa-icon *ngIf="!register.isActive" [icon]="icons.faTimes" [styles]="{ 'color': 'red' }"></fa-icon>
+          </div>
+          <div class="column is-4">
+            <input class="input" type="text" [(ngModel)]="register.displayName">
+          </div>
+          <div class="column is-1">
+            <span>{{ register.documentCount }}</span>
+          </div>
+          <div class="column is-2">
+            <button class="button is-primary" (click)="saveRegister(register.id)">Update</button>
+          </div>
+          <div class="column">
+            <button class="button is-primary" (click)="makeActive(register.id)">Make Active</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
