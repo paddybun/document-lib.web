@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
@@ -14,7 +14,7 @@ export class TagDetailComponent implements OnInit {
   tag: TagData;
   isCreating = false;
 
-  constructor(private tagService: TagService, private location: Location, private route: ActivatedRoute) { }
+  constructor(private tagService: TagService, private location: Location, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -39,5 +39,14 @@ export class TagDetailComponent implements OnInit {
       this.tagService.postTag(this.tag)
         .subscribe(tag => this.tag = tag);
     }
+  }
+
+  deleteTag(): void {
+    this.tagService.deleteTag(this.tag)
+      .subscribe((res) => {
+      if (res === 'deleted') {
+        this.router.navigate(["/tag"]);
+      }
+    })
   }
 }

@@ -1,6 +1,7 @@
 <div *ngIf="document">
   <h2>Document {{ document.name }}</h2>
-  <form [formGroup]="formGroup" novalidate (ngSubmit)="submit()">
+  <form [formGroup]="formGroup" novalidate (ngSubmit)="submit()" (keydown.enter)="$event.preventDefault()">
+    <input id="tags" type="text" formControlName="tags" [hidden]="true">
     <div>
       <div>
         <label for="id">id:</label>
@@ -41,6 +42,8 @@
     <div>
       <button type="submit">Submit</button>
     </div>
+    <app-tag-select [tags]="document.tags" (tagsChange)="transformTags($event)">
+    </app-tag-select>
   </form>
   <button (click)="deleteDocument()">Delete</button>
 </div>

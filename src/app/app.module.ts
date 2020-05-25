@@ -15,6 +15,7 @@ import { FolderComponent } from './folder/folder.component';
 import { FolderDetailComponent } from './folder-detail/folder-detail.component';
 import { GenericSelectorComponent } from './generic-selector/generic-selector.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { TagSelectComponent } from './shared/tag-select/tag-select.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     DocumentDetailComponent,
     FolderComponent,
     FolderDetailComponent,
-    GenericSelectorComponent
+    GenericSelectorComponent,
+    TagSelectComponent
   ],
   imports: [
     AppRoutingModule,

@@ -24,7 +24,7 @@ export class TagService {
       headers: {
         'Content-Type': 'application/json'
       }
-    }
+    };
     return this.http.put<TagData>('https://localhost:5001/api/tag', tag, options);
   }
   postTag(tag: TagData): Observable<TagData> {
@@ -32,7 +32,11 @@ export class TagService {
       headers: {
         'Content-Type': 'application/json'
       }
-    }
+    };
     return this.http.post<TagData>('https://localhost:5001/api/tag', tag, options);
+  }
+
+  deleteTag(tag: TagData) {
+    return this.http.delete(`https://localhost:5001/api/tag/${tag.id}`, { responseType: 'text' });
   }
 }

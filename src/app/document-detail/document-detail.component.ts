@@ -33,6 +33,7 @@ export class DocumentDetailComponent implements OnInit {
     folder: new FormControl()
   });
   fileData: File;
+  tags: string;
 
   constructor(
     private documentService: DocumentService,
@@ -100,7 +101,7 @@ export class DocumentDetailComponent implements OnInit {
     formData.append('file', this.formGroup.get('file').value);
     formData.append('category', this.formGroup.get('category').value);
     formData.append('folder', this.formGroup.get('folder').value);
-    formData.append('tags', '');
+    formData.append('tags', this.tags);
 
     if (this.isNew) {
       this.documentService.postDocument(formData)
@@ -130,6 +131,7 @@ export class DocumentDetailComponent implements OnInit {
     console.log(this.document);
     this.formGroup.get('id').setValue(this.document.id);
     this.formGroup.get('name').setValue(this.document.name);
+    this.formGroup.get('tags').setValue(this.document.tags.join('|'));
     this.formGroup.get('date').setValue(moment(this.document.date).format('YYYY-MM-DD'));
     this.folders.forEach(item => {
       if (item.id.toLowerCase() === doc.folder.toLowerCase()) {
@@ -143,5 +145,9 @@ export class DocumentDetailComponent implements OnInit {
         this.formGroup.get('category').setValue(item.id);
       }
     });
+  }
+
+  transformTags(tags: string[]) {
+    this.tags = tags.join('|')
   }
 }

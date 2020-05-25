@@ -1,0 +1,4 @@
+<input #tagInput type="text" (keyup.enter)="addTag($event)">
+<ul *ngIf="this.tags.length > 0">
+  <li *ngFor="let tag of tags">{{ tag }}</li>
+</ul>

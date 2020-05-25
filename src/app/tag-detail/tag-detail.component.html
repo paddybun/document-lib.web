@@ -13,7 +13,8 @@
     </div>
   </div>
   <div>
-    <input *ngIf="isCreating" type="button" value="Create" (click)="saveTag()">
-    <input *ngIf="!isCreating" type="button" value="Update" (click)="saveTag()">
+    <input class="button is-primary" *ngIf="isCreating" type="button" value="Create" (click)="saveTag()">
+    <input class="button is-primary" *ngIf="!isCreating" type="button" value="Update" (click)="saveTag()">
+    <input class="button is-danger" *ngIf="!isCreating" type="button" value="Delete" (click)="deleteTag()">
   </div>
 </div>
