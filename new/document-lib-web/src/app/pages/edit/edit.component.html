@@ -1,0 +1,79 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Document display name</mat-label>
+    <input #docdisplay matInput [(ngModel)]="currentDocument.displayName" name="displayName">
+  </mat-form-field>
+
+  <app-autocomplete placeholder="Select category or create a new one"
+                    label="Categories"
+                    [selectedCategory]="currentDocument.category"
+                    [options]="categories" (categoryChange)="categoryChanged($event)">
+  </app-autocomplete>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Company/Sender of document</mat-label>
+    <input #doccompany matInput [(ngModel)]="currentDocument.company" name="company">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Date on document</mat-label>
+    <input #docdate matInput type="date" value="{{ formatDate(currentDocument.dateOfDocument) }}" [(ngModel)]="currentDocument.dateOfDocument" name="dateOfDocument">
+  </mat-form-field>
+
+  <app-chips placeholder="Select multiple tags or create new ones" label="Tags" [tags]="currentDocument.tags"
+             [options]="tags"></app-chips>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Description</mat-label>
+    <textarea rows="5" #docdesc matInput
+              placeholder="A brief description of the document">{{ currentDocument.description }}</textarea>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="save()">Save</button>
+  <br>
+  <br>
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Miscellaneous information
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-form-field class="example-full-width">
+        <mat-label>Id</mat-label>
+        <input #docid matInput value="{{currentDocument.id}}" name="id" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Document name</mat-label>
+        <input #docname matInput value="{{currentDocument.name}}" name="name" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Physical document name/Blob path</mat-label>
+        <input #docphysname matInput value="{{currentDocument.physicalName}}" name="physicalName" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="example-half-width">
+        <mat-label>Folder</mat-label>
+        <input #docfolder matInput value="{{currentDocument.folderName}}" name="folderName" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="example-half-width">
+        <mat-label>Register</mat-label>
+        <input #docregister matInput value="{{currentDocument.registerName}}" name="registerName" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Upload date</mat-label>
+        <input #docuploaddate type="date" matInput value="{{ formatDate(currentDocument.uploadDate) }}" name="uploadDate" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Unsorted</mat-label>
+        <input #docunsorted matInput value="{{ currentDocument.unsorted }}" name="unsorted" disabled>
+      </mat-form-field>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</form>

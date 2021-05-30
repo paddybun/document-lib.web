@@ -1,0 +1,20 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{ (document.name.length > 25) ? (document.name | slice:0:25) + "..." : document.name }}</mat-card-title>
+    <mat-card-subtitle>A new document</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Upload Date: <br>
+      {{ formatDate(document.uploadDate) }}
+    </p>
+    <p>
+      Name: <br>
+      {{ document.name }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="editDocument(document)">EDIT</button>
+    <button mat-button (click)="downloadAndOpenDocument(document.physicalName)">VIEW PDF</button>
+  </mat-card-actions>
+</mat-card>
