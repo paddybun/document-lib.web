@@ -16,21 +16,21 @@ export class ChipsComponent implements OnInit {
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  tagCtrl = new FormControl();
-  filteredTags!: Observable<string[]>;
+  itemCtrl = new FormControl();
+  filteredItems!: Observable<string[]>;
 
   @Input() options: string[] = [];
-  @Input() tags: string[] = [];
+  @Input() items: string[] = [];
   @Input() label: string = "";
   @Input() placeholder: string = "";
 
-  @ViewChild('tagInput', {static: true}) tagInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('itemInput', {static: true}) tagInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: true}) matAutocomplete!: MatAutocomplete;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.filteredTags = this.tagCtrl.valueChanges.pipe(
+    this.filteredItems = this.itemCtrl.valueChanges.pipe(
       startWith(null),
       map((tag: string | null) => {
         return tag ? this._filter(tag) : this.options.slice()
@@ -42,32 +42,31 @@ export class ChipsComponent implements OnInit {
     const value = (event.value || '').trim();
 
     if (value) {
-      this.tags.push(value);
+      this.items.push(value);
     }
 
     event.chipInput!.clear();
 
-    this.tagCtrl.setValue(null);
+    this.itemCtrl.setValue(null);
   }
 
-  remove(tag: string): void {
-    const index = this.tags.indexOf(tag);
+  remove(item: string): void {
+    const index = this.items.indexOf(item);
 
     if (index >= 0) {
-      this.tags.splice(index, 1);
+      this.items.splice(index, 1);
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.tags.push(event.option.viewValue);
+    this.items.push(event.option.viewValue);
     this.tagInput.nativeElement.value = '';
-    this.tagCtrl.setValue(null);
+    this.itemCtrl.setValue(null);
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.options.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
+    return this.options.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
   }
-
 }

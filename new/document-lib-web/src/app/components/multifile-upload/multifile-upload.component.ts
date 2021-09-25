@@ -2,11 +2,11 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {DocumentService} from "../../services/document.service";
 
 @Component({
-  selector: 'app-dnd-upload',
-  templateUrl: './dnd-upload.component.html',
-  styleUrls: ['./dnd-upload.component.scss']
+  selector: 'app-multifile-upload',
+  templateUrl: './multifile-upload.component.html',
+  styleUrls: ['./multifile-upload.component.scss']
 })
-export class DndUploadComponent {
+export class MultifileUploadComponent {
   @ViewChild('fileInput', { static: true }) fileInput: ElementRef | undefined;
   fileAttr = 'Choose File';
 

@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {DocumentModel} from "../models/document.model";
 import {MetadataModel} from "../models/metadata.model";
-import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +27,13 @@ export class DocumentService {
 
   public downloadDocument(physicalName: string): Observable<Blob> {
     return this.httpClient.request("post", "http://localhost:7071/api/DownloadDocument", { body: { physicalName }, responseType: "blob"});
+  }
+
+  public saveDocument(document: DocumentModel): Observable<DocumentModel> {
+    return this.httpClient.post<DocumentModel>("http://localhost:7071/api/CreateOrUpdateDocument", document);
+  }
+
+  public searchDocument(tags: string[]): Observable<DocumentModel[]> {
+    return this.httpClient.post<DocumentModel[]>("http://localhost:7071/api/QueryDocuments", { tags },{ headers: { "Content-Type": "application/json" } });
   }
 }

@@ -15,7 +15,7 @@ export class AutocompleteComponent implements OnInit {
   @Input() placeholder: string = "";
   @Input() label: string = "";
 
-  @Output() categoryChange: EventEmitter<string> = new EventEmitter<string>();
+  @Output() selectionChange: EventEmitter<string> = new EventEmitter<string>();
 
   public myControl = new FormControl();
   public filteredOptions!: Observable<string[]>;
@@ -35,7 +35,7 @@ export class AutocompleteComponent implements OnInit {
   }
 
   public handleChange(event: any) {
-    this.categoryChange.emit(event.target.value);
+    this.selectionChange.emit(event.target.value);
   }
 
 }

@@ -1,0 +1,12 @@
+<div class="example-form">
+    <mat-label>Tags</mat-label>
+    <app-chips [options]="tags" [items]="selectedTags"></app-chips>
+    <button mat-raised-button color="primary" (click)="browse()">
+      Search
+    </button>
+</div>
+<mat-grid-list cols="4">
+  <mat-grid-tile *ngFor="let doc of documents">
+    <app-document-card [document]="doc"></app-document-card>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -15,6 +15,8 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatExpansionModule} from "@angular/material/expansion";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatListModule} from "@angular/material/list";
 
 const materialModules = [
   MatIconModule,
@@ -30,7 +32,9 @@ const materialModules = [
   MatOptionModule,
   MatAutocompleteModule,
   MatChipsModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatProgressSpinnerModule,
+  MatListModule
 ];
 
 @NgModule({

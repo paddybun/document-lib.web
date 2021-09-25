@@ -15,6 +15,8 @@ export class DocumentCardComponent implements OnInit {
   @Input()
   public document!: DocumentModel
 
+  public isPdfLoading: boolean = false;
+
   constructor( private documentService: DocumentService, private router: Router, private documentEditService: DocumentEditService) { }
 
   ngOnInit(): void {
@@ -26,11 +28,14 @@ export class DocumentCardComponent implements OnInit {
 
   public editDocument(doc: DocumentModel) {
     this.documentEditService.documentToEdit = doc;
+    this.documentEditService.origin = doc.unsorted ? 'new' : 'existing';
     this.router.navigateByUrl("edit");
   }
 
   public downloadAndOpenDocument(name: string) {
+    this.isPdfLoading = true;
     this.documentService.downloadDocument(name).subscribe( blob => {
+      this.isPdfLoading = false;
       const url = URL.createObjectURL(blob);
       window.open(url, "_blank");
     })

@@ -1,0 +1,29 @@
+<mat-form-field>
+  <div>
+    <mat-toolbar>
+      <!-- Display files names -->
+      <input matInput [(ngModel)]="fileAttr" readonly name="name"/>
+
+      <!-- Browse Button -->
+      <button mat-flat-button color="primary">
+        Browse File
+      </button>
+    </mat-toolbar>
+
+    <!-- Fetch selected filed on change -->
+    <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)" name="uploadFile" multiple="multiple"
+           accept=".pdf"/>
+  </div>
+</mat-form-field>
+<mat-list>
+  <div mat-subheader>Files to Upload</div>
+  <mat-list-item *ngFor="let file of fileMap">
+    <mat-icon mat-list-icon>file_upload</mat-icon>
+    <div mat-line>{{file.key}}</div>
+  </mat-list-item>
+  <mat-list-item *ngIf="fileMap.length > 0">
+    <button mat-raised-button color="primary" (click)="uploadAll()">
+      UPLOAD
+    </button>
+  </mat-list-item>
+</mat-list>

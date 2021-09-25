@@ -7,9 +7,15 @@ import {DocumentService} from "./document.service";
 })
 export class DocumentEditService {
 
-  public documentToEdit!: DocumentModel
+  public documentToEdit: DocumentModel | null = null
+  public origin: 'new' | 'existing' | 'not_initialized' = "not_initialized";
 
-  constructor(private documentService: DocumentService) { }
+  constructor(private documentService: DocumentService) {
+  }
 
+  public reset() {
+    this.documentToEdit = null;
+    this.origin = "not_initialized";
+  }
 
 }

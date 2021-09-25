@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {DocumentService} from "./document.service";
 import {MetadataModel} from "../models/metadata.model";
 import {BehaviorSubject, Subject} from "rxjs";
+import {DocumentModel} from "../models/document.model";
 
 @Injectable({
   providedIn: 'root'

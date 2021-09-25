@@ -1,5 +1,13 @@
+.edit-page {
+  display: flex;
+  flex-direction: row;
+  form, div {
+    margin-right: 10px;
+  }
+}
+
 .example-form {
-  width: 50vw;
+  width: 40vw;
   margin: 2vh 2vw;
 }
 
@@ -9,4 +17,18 @@
 
 .example-half-width {
   width: 49%;
+}
+
+.pdf-viewer {
+  width: 40vw;
+
+  object {
+    width: 40vw;
+    height: 75vh;
+
+    iframe {
+      width: 40vw;
+      height: 75vh;
+    }
+  }
 }

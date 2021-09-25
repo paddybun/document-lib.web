@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UploadComponent} from './pages/upload/upload.component';
 import {HomeComponent} from './pages/home/home.component';
-import { DndUploadComponent } from './components/dnd-upload/dnd-upload.component';
+import { MultifileUploadComponent } from './components/multifile-upload/multifile-upload.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "./shared/shared.module";
 import {HttpClientModule} from "@angular/common/http";
@@ -15,18 +15,20 @@ import { DocumentCardComponent } from './components/document-card/document-card.
 import { ChipsComponent } from './components/chips/chips.component';
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { EditComponent } from './pages/edit/edit.component';
+import { BrowseComponent } from './pages/browse/browse.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UploadComponent,
     HomeComponent,
-    DndUploadComponent,
+    MultifileUploadComponent,
     NewDocsComponent,
     DocumentCardComponent,
     ChipsComponent,
     AutocompleteComponent,
     EditComponent,
+    BrowseComponent,
   ],
   imports: [
     HttpClientModule,
