@@ -24,6 +24,9 @@ export class BrowseComponent implements OnInit {
     this.metadataService.$metadata.subscribe(metadata => {
       this.tags = metadata.tags.map(x => x.name)
     })
+    this.documentService.getRecentlyUploadedAndCreated().subscribe(docs => {
+      this.documents = docs
+    })
   }
 
   public browse() {

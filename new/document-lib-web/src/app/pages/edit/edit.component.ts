@@ -19,7 +19,6 @@ export class EditComponent implements OnInit, OnDestroy {
   public tags: string[] = [];
   public categories: string[] = [];
   public currentDocument!: DocumentModel;
-  public panelOpenState: boolean = false;
   public format = format;
 
   @ViewChild("docdesc", {static: true}) description!: HTMLTextAreaElement;

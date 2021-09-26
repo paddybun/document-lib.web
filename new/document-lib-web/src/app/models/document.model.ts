@@ -7,6 +7,7 @@ export interface DocumentModel {
   company: string;
   dateOfDocument: string;
   uploadDate: string;
+  lastUpdate: string;
   description: string;
   folderName: string;
   registerName: string;

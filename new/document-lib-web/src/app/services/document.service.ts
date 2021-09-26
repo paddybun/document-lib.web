@@ -21,6 +21,10 @@ export class DocumentService {
     return this.httpClient.post<DocumentModel[]>("http://localhost:7071/api/QueryDocuments", { unsorted: true },{ headers: { "Content-Type": "application/json" } });
   }
 
+  public getRecentlyUploadedAndCreated(): Observable<DocumentModel[]> {
+    return this.httpClient.post<DocumentModel[]>("http://localhost:7071/api/QueryDocuments", { },{ headers: { "Content-Type": "application/json" } });
+  }
+
   public getMetadata(): Observable<MetadataModel> {
     return this.httpClient.get<MetadataModel>("http://localhost:7071/api/GetMetadata");
   }
@@ -35,5 +39,9 @@ export class DocumentService {
 
   public searchDocument(tags: string[]): Observable<DocumentModel[]> {
     return this.httpClient.post<DocumentModel[]>("http://localhost:7071/api/QueryDocuments", { tags },{ headers: { "Content-Type": "application/json" } });
+  }
+
+  public deleteDocument(id: string): Observable<string> {
+    return this.httpClient.post<string>("http://localhost:7071/api/DeleteDocument", { id },{ headers: { "Content-Type": "application/json" } });
   }
 }

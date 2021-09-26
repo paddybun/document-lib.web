@@ -1,4 +1,4 @@
-<mat-card class="example-card">
+<mat-card class="example-card" *ngIf="isVisible">
   <mat-card-header>
     <mat-card-title>{{ (document.name.length > 25) ? (document.name | slice:0:25) + "..." : document.name }}</mat-card-title>
     <mat-card-subtitle>A new document</mat-card-subtitle>
@@ -12,16 +12,38 @@
       Name: <br>
       {{ document.name }}
     </p>
+    <p>
+      Folder: <br>
+      {{ document.folderName }}
+    </p>
+    <p>
+      Register: <br>
+      {{ document.registerName }}
+    </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button (click)="editDocument(document)">EDIT</button>
-    <button mat-button (click)="downloadAndOpenDocument(document.blobLocation)" *ngIf="isPdfLoading" disabled>
+    <button mat-raised-button color="primary" (click)="editDocument(document)">EDIT</button>
+
+    <button mat-raised-button color="primary" (click)="downloadAndOpenDocument(document.blobLocation)" *ngIf="isPdfLoading" disabled>
       <mat-spinner diameter="20">
         VIEW PDF
       </mat-spinner>
     </button>
-    <button mat-button (click)="downloadAndOpenDocument(document.blobLocation)" *ngIf="!isPdfLoading">
+    <button mat-raised-button color="primary" (click)="downloadAndOpenDocument(document.blobLocation)" *ngIf="!isPdfLoading">
         VIEW PDF
+    </button>
+
+    <button mat-raised-button color="warn" (click)="changeToDeleteMode(true)" *ngIf="isDeleting && deleteProcessStarted" disabled>
+      <mat-spinner diameter="20">
+        <mat-icon>done</mat-icon>
+        &nbsp;
+      </mat-spinner>
+    </button>
+    <button mat-raised-button color="primary" (click)="changeToDeleteMode(true)" *ngIf="!isDeleting && !deleteProcessStarted">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-raised-button color="warn" (click)="deleteDocument(document.id)" *ngIf="isDeleting && !deleteProcessStarted">
+      <mat-icon>done</mat-icon>
     </button>
   </mat-card-actions>
 </mat-card>
