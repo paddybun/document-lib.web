@@ -4,13 +4,16 @@ import {DocumentModel} from "../../models/document.model";
 import {DocumentService} from "../../services/document.service";
 import {Router} from "@angular/router";
 import {DocumentEditService} from "../../services/document.edit.service";
+import {Subscription} from "rxjs";
+import {MetadataService} from "../../services/metadata.service";
+import {MetadataModel} from "../../models/metadata.model";
 
 @Component({
   selector: 'app-document-card',
   templateUrl: './document-card.component.html',
   styleUrls: ['./document-card.component.scss']
 })
-export class DocumentCardComponent implements OnInit {
+export class DocumentCardComponent implements OnInit, OnDestroy {
 
   @Input()
   public document!: DocumentModel
@@ -21,9 +24,19 @@ export class DocumentCardComponent implements OnInit {
   public isDeleting = false
   public deleteProcessStarted = false
 
-  constructor( private documentService: DocumentService, private router: Router, private documentEditService: DocumentEditService) { }
+  public metadata: MetadataModel = { tags: [], folders: [], categories: [] };
+  public metadataSubscription: Subscription;
+
+  constructor( private documentService: DocumentService, private router: Router, private documentEditService: DocumentEditService, private metadataService: MetadataService) { }
 
   ngOnInit(): void {
+     this.metadataSubscription = this.metadataService.$metadata.subscribe(data => {
+       this.metadata = data
+     })
+  }
+
+  ngOnDestroy(): void {
+    this.metadataSubscription.unsubscribe();
   }
 
   public formatDate(date: string): string {
@@ -54,5 +67,11 @@ export class DocumentCardComponent implements OnInit {
     this.documentService.deleteDocument(id).subscribe(x => {
       this.isVisible = false
     });
+  }
+
+  public getFolderName(folderName: string) {
+    if (!this.metadata) return ""
+
+    return this.metadata.folders.find(x => x.name === folderName)?.displayName || ""
   }
 }

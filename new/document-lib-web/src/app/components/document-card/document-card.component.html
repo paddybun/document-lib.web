@@ -5,20 +5,14 @@
   </mat-card-header>
   <mat-card-content>
     <p>
-      Upload Date: <br>
-      {{ formatDate(document.uploadDate) }}
+      Upload Date: <b>{{ formatDate(document.uploadDate) }}</b>
     </p>
     <p>
-      Name: <br>
-      {{ document.name }}
+      <b>{{ document.displayName }}</b>
     </p>
     <p>
-      Folder: <br>
-      {{ document.folderName }}
-    </p>
-    <p>
-      Register: <br>
-      {{ document.registerName }}
+      Folder: <b>{{ getFolderName(document.folderName) }}</b><br>
+      Register: <b>{{ document.registerName }}</b>
     </p>
   </mat-card-content>
   <mat-card-actions>
