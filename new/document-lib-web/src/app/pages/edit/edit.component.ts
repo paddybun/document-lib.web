@@ -21,6 +21,8 @@ export class EditComponent implements OnInit, OnDestroy {
   public currentDocument!: DocumentModel;
   public format = format;
 
+  public dateOfDocument: string = "";
+
   @ViewChild("docdesc", {static: true}) description!: HTMLTextAreaElement;
 
   private metadataSubscription!: Subscription;
@@ -44,64 +46,67 @@ export class EditComponent implements OnInit, OnDestroy {
       return;
     }
     this.currentDocument = this.documentEditService.documentToEdit;
+    this.dateOfDocument = format(new Date(this.currentDocument.dateOfDocument), "yyyy-MM-dd");
     this.metadataSubscription = this.metadataService.$metadata.subscribe(data => {
-      this.tagsDatasource = data.tags.map(x => x.name)
-      this.categories = data.categories.map(x => x.name)
+      this.tagsDatasource = data.tags.map(x => x.name);
+      this.categories = data.categories.map(x => x.name);
     });
     this.documentService.downloadDocument(this.currentDocument.blobLocation).subscribe(blob => {
       this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(blob));
-    })
+    });
   }
 
   public formatDate(date: string) {
-    return format(new Date(date), "yyyy-MM-dd");
+    const dt = format(new Date(date), "yyyy-MM-dd");
+    return dt;
   }
 
   public save() {
-    this.isSaving = true
+    this.isSaving = true;
+    this.currentDocument.dateOfDocument = this.dateOfDocument;
     this.currentDocument.description = this.description.value;
     this.documentService.saveDocument(this.currentDocument).subscribe(
       response => {
-        console.log(response)
+        console.log(response);
         this.metadataService.loadMetadata();
-        this.isSaving = false
+        this.isSaving = false;
         if (this.documentEditService.origin === "new") {
           this.router.navigateByUrl("new");
         } else if (this.documentEditService.origin === "existing") {
-          this.router.navigateByUrl("browse")
+          this.router.navigateByUrl("browse");
         }
       },
       error => {
-        console.log(error)
-        this.isSaving = false
+        console.log(error);
+        this.isSaving = false;
       }
-    )
+    );
     console.log(this.currentDocument);
   }
 
   public handleCategoryBlur(category: string) {
     this.currentDocument.category = category;
-    if (this.currentDocument.tags.indexOf(category) < 0) {
-      this.currentDocument.tags.push(category);
-    }
+    this.addTag(category);
   }
 
   public handleCompanyBlur(event: any) {
     const company = event.target.value;
-    if (this.currentDocument.tags.indexOf(company) < 0) {
-      this.currentDocument.tags.push(company)
-    }
+    this.addTag(company);
   }
 
   public handleDateBlur(event: any) {
     const date = new Date(event.target.value);
     const month = format(date, "MMMM", {locale: de}).toLowerCase();
     const year = format(date, "yyyy");
-    if (this.currentDocument.tags.indexOf(month) < 0) {
-      this.currentDocument.tags.push(month);
+    this.addTag(month);
+    this.addTag(year);
+  }
+
+  private addTag(tagname: string) {
+    tagname = tagname.toLowerCase();
+    if (this.currentDocument.tags.indexOf(tagname) >= 0 || tagname === "") {
+      return;
     }
-    if (this.currentDocument.tags.indexOf(year) < 0) {
-      this.currentDocument.tags.push(year);
-    }
+    this.currentDocument.tags.push(tagname);
   }
 }

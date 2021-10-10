@@ -11,7 +11,7 @@ import {map, startWith} from "rxjs/operators";
 export class AutocompleteComponent implements OnInit {
 
   @Input() options: string[] = [];
-  @Input() selectedCategory: string = "";
+  @Input() selectedItem: string = "";
   @Input() placeholder: string = "";
   @Input() label: string = "";
 
@@ -27,6 +27,7 @@ export class AutocompleteComponent implements OnInit {
       startWith(''),
       map(value => this._filter(value))
     );
+    this.myControl.setValue(this.selectedItem);
   }
 
   private _filter(value: string): string[] {

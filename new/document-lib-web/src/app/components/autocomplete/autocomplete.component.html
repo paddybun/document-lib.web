@@ -5,7 +5,7 @@
          matInput
          [formControl]="myControl"
          [matAutocomplete]="auto"
-         value="{{ selectedCategory !== '' ? selectedCategory : '' }}"
+         [value]="selectedItem"
          (blur)="handleChange($event)">
   <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">

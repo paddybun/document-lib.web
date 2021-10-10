@@ -25,6 +25,7 @@ export class DocumentCardComponent implements OnInit, OnDestroy {
   public deleteProcessStarted = false
 
   public metadata: MetadataModel = { tags: [], folders: [], categories: [] };
+  // @ts-ignore
   public metadataSubscription: Subscription;
 
   constructor( private documentService: DocumentService, private router: Router, private documentEditService: DocumentEditService, private metadataService: MetadataService) { }

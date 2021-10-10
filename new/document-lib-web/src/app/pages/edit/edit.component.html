@@ -7,7 +7,7 @@
 
     <app-autocomplete placeholder="Select category or create a new one"
                       label="Categories"
-                      [selectedCategory]="currentDocument.category"
+                      [selectedItem]="currentDocument.category"
                       [options]="categories"
                       (selectionChange)="handleCategoryBlur($event)">
     </app-autocomplete>
@@ -21,8 +21,9 @@
     <mat-form-field class="example-full-width">
       <mat-label>Date on document</mat-label>
       <input #docdate matInput type="date" value="{{ formatDate(currentDocument.dateOfDocument) }}"
-             [(ngModel)]="currentDocument.dateOfDocument" name="dateOfDocument" (blur)="handleDateBlur($event)">
+             [(ngModel)]="dateOfDocument" name="dateOfDocument" (blur)="handleDateBlur($event)">
     </mat-form-field>
+
 
     <app-chips placeholder="Select multiple tags or create new ones" label="Tags" [items]="currentDocument.tags"
                [options]="tagsDatasource"></app-chips>
